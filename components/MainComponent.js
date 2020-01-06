@@ -3,11 +3,13 @@ import Home from './HomeComponent';
 import Directory from './DirectoryComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
 import { View, Platform } from 'react-native';
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import {createDrawerNavigator } from 'react-navigation-drawer';
+import {createStackNavigator} from 'react-navigation-stack';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
+import {createAppContainer} from 'react-navigation';
 
-const DirectoryNavigator = createStackNavigator(
+const DirectoryNavigator = createDrawerNavigator(
     {
         Directory: { screen: Directory },
         CampsiteInfo: { screen: CampsiteInfo }
@@ -77,7 +79,7 @@ const ContactNavigator = createStackNavigator(
     }
     )
 
-const MainNavigator = createDrawerNavigator(
+const MainNavigator = createAppContainer(createDrawerNavigator(
     {
         Home: { screen: HomeNavigator },
         Directory: { screen: DirectoryNavigator },
@@ -86,7 +88,7 @@ const MainNavigator = createDrawerNavigator(
     },
     {
         drawerBackgroundColor: '#CEC8FF'
-    }
+    })
 );
 
 class Main extends Component {
