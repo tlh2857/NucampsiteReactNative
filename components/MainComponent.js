@@ -289,7 +289,7 @@ const MainNavigator =  createAppContainer(createDrawerNavigator(
             }
         },
         Favorites: {
-            screen: ReservationNavigator,
+            screen: FavoritesNavigator,
             navigationOptions: {
                 drawerLabel: 'My Favorites',
                 drawerIcon: ({tintColor}) => (
