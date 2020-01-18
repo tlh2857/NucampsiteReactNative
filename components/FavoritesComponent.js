@@ -7,6 +7,8 @@ import {baseUrl} from '../shared/baseUrl';
 import { FlatList } from 'react-native-gesture-handler';
 import Swipeout from 'react-native-swipeout';
 import {deleteFavorite} from '../redux/ActionCreators';
+import * as Animatable from 'react-native-animatable';
+
 
 const mapDispatchToProps = {
     deleteFavorite: campsiteId => (deleteFavorite(campsiteId))
@@ -21,7 +23,7 @@ const mapStateToProps = state => {
 
 class Favorites extends Component {
 
-    static: navigationOptions = {
+    static navigationOptions = {
         title: 'My Favorites'
     }
 
@@ -58,12 +60,16 @@ const rightButton = [
             return (
                 
                 <Swipeout right={rightButton} autoClose={true}>
-                    <ListItem   
-                        title={item.name}
-                        subtitle={item.description}
-                        leftAvatar={{source:{uri:baseUrl + item.image}}}
-                        onPress={()=> Navigate('CampsiteInfo', {campsiteId: item.id})}
-                        />
+                        <Animatable.View animation='fadeInRightBig' 
+                duration={2000}
+                >
+                        <ListItem   
+                            title={item.name}
+                            subtitle={item.description}
+                            leftAvatar={{source:{uri:baseUrl + item.image}}}
+                            onPress={()=> Navigate('CampsiteInfo', {campsiteId: item.id})}
+                            />
+                    </Animatable.View>
                 </Swipeout>
             )
         }
