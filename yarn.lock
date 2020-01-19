@@ -5070,6 +5070,11 @@ expo-optimize@^0.0.6:
   resolved "https://registry.yarnpkg.com/expo-optimize/-/expo-optimize-0.0.6.tgz#016632de5a282208ec8c1aaf986ee13611271667"
   integrity sha512-Rk4RcHdlwqz0BxMRGEZLoIJLHNUa8ZAWTvygnoyN062oiIqG6l5URnL4ebIfu64r+3HbbYXqMVjXmsSMkf6oSw==
 
+expo-permissions@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-7.0.0.tgz#f4135c3cf8e49c673a9a714459a1eb2b40fe2092"
+  integrity sha512-C+qyVz+pdZO4YpVR2HSC3gsBZg0Qb8brCFgzmDmWcAtgrOiHClaLPdhI2XtQuGh8ubXcKPUGZp++UCEGiG0Jxg==
+
 expo-permissions@~8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-8.0.0.tgz#5a45e8451dd7ff37c9e6ce5e2447818372547813"
