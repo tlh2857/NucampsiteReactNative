@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView, Image} from 'react-native';
+import {View, StyleSheet, ScrollView, Image, Alert} from 'react-native';
 import {Input, CheckBox, Button, Icon} from 'react-native-elements';
 import * as SecureStore from 'expo-secure-store';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-import {createBottomTabNavigator} from 'react-navigation';
+//import {createBottomTabNavigator} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {baseUrl} from '../shared/baseUrl';
 
 
@@ -22,7 +23,7 @@ class LoginTab extends Component {
         title: 'Login', 
         tabBarIcon: ({tintColor})=> (
             <Icon 
-                name='sign in'
+                name='sign-in'
                 type='font-awesome'
                 iconStyle={{color: tintColor}}
             />
@@ -144,11 +145,11 @@ class RegisterTab extends Component {
         const cameraRollPermission = await Permissions.askAsync(Permissions.CAMERA_ROLL);
         if(cameraPermission.status==='granted'&&cameraRollPermission.status==='granted'){
             const capturedImage = await ImagePicker.launchCameraAsync({
-                allowsEditing:true,
+                allowsEditing:false,
                 aspect: [1,1]
             });
             if(!capturedImage.cancelled){
-                console.log(capturedImage);
+               // console.log(capturedImage);
                 this.setState({imageUrl:capturedImage.uri});
             }
         }
@@ -172,7 +173,7 @@ class RegisterTab extends Component {
                  <View style={styles.container}>
                  <View style={styles.imageContainer}>
                      <Image 
-                        source={this.state.imageUrl}
+                        source={{uri: this.state.imageUrl}}
                         loadingIndicatorSource={require('./images/logo.png')}
                         style={styles.image}
                     />
