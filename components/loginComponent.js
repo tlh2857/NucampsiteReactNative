@@ -7,6 +7,7 @@ import * as Permissions from 'expo-permissions';
 //import {createBottomTabNavigator} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {baseUrl} from '../shared/baseUrl';
+import * as ImageManipulator from 'expo-image-manipulator';
 
 
 class LoginTab extends Component {
@@ -149,11 +150,38 @@ class RegisterTab extends Component {
                 aspect: [1,1]
             });
             if(!capturedImage.cancelled){
-               // console.log(capturedImage);
-                this.setState({imageUrl:capturedImage.uri});
+               console.log(capturedImage);
+                this.processImage(capturedImage.uri);
             }
         }
     }
+
+    getImageFromGallery = async () => {
+        const cameraRollPermission = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        if(cameraRollPermission.status==='granted'){
+            const capturedImage = await ImagePicker.launchImageLibraryAsync({
+                allowsEditing:false,
+                aspect: [1,1]
+            });
+            if(!capturedImage.cancelled){
+               console.log(capturedImage);
+                this.processImage(capturedImage.uri);
+            }
+        }
+
+    }
+
+    processImage = async (imgUri) => {
+        let processedImage = await ImageManipulator.manipulateAsync(
+           imgUri,
+            [{ resize:{width:400}}],
+            { compress: 1, format: ImageManipulator.SaveFormat.PNG }
+          );
+          console.log(processedImage);
+          this.setState({imageUrl:processedImage.uri});
+
+        };
+    
 
     handleRegister(){
         console.log(JSON.stringify(this.state));
@@ -180,6 +208,10 @@ class RegisterTab extends Component {
                     <Button
                         title='Camera'
                         onPress={this.getImageFromCamera}
+                    />
+                    <Button
+                        title='Gallery'
+                        onPress={this.getImageFromGallery}
                     />
                  </View>
                     <Input 
