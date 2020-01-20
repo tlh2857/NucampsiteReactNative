@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.5",
+    "@react-native-community/netinfo": "3.2.1",
     "expo": "~36.0.2",
     "expo-cli": "^3.11.5",
     "expo-image-picker": "7.0.0",
